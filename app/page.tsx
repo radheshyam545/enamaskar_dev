@@ -2,13 +2,6 @@
 
 import { useMemo, useEffect, useState } from "react"
 import { Card, CardContent } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Separator } from "@/components/ui/separator"
-import { Hero } from "@/components/event/hero"
-import { RsvpForm } from "@/components/event/rsvp-form"
-import { GuestList } from "@/components/event/guest-list"
-import { Gallery } from "@/components/event/gallery"
-import { SaveTheDateVideo } from "@/components/event/save-the-date-video"
 
 // Countdown logic
 function getRemaining(target: Date) {
@@ -26,13 +19,13 @@ function getRemaining(target: Date) {
 // Beautiful Time Card Component
 function TimeCard({ label, value }: { label: string; value: number | string }) {
   return (
-    <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-white/90 to-white/70 backdrop-blur-sm border border-white/20 shadow-2xl">
+    <div className="relative overflow-hidden rounded-xl bg-gradient-to-br from-white/90 to-white/70 backdrop-blur-sm border border-white/20 shadow-xl">
       <div className="absolute inset-0 bg-gradient-to-br from-pink-500/10 to-purple-500/10"></div>
-      <div className="relative px-6 py-8 text-center">
-        <div className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-pink-600 to-purple-600 bg-clip-text text-transparent mb-2">
+      <div className="relative px-3 py-4 md:px-4 md:py-5 text-center">
+        <div className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-pink-600 to-purple-600 bg-clip-text text-transparent mb-1">
           {value}
         </div>
-        <div className="text-sm font-medium text-slate-700 uppercase tracking-wider">{label}</div>
+        <div className="text-xs md:text-sm font-medium text-slate-700 uppercase tracking-wider">{label}</div>
       </div>
     </div>
   )
@@ -50,7 +43,7 @@ function BeautifulCountdown({ dateISO }: { dateISO: string }) {
 
   if (t.finished) {
     return (
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-3">
         <TimeCard label="Status" value="🎉" />
         <TimeCard label="Best" value="💕" />
         <TimeCard label="Wishes" value="✨" />
@@ -60,7 +53,7 @@ function BeautifulCountdown({ dateISO }: { dateISO: string }) {
   }
 
   return (
-    <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+    <div className="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-3">
       <TimeCard label="Days" value={t.days} />
       <TimeCard label="Hours" value={t.hours} />
       <TimeCard label="Minutes" value={t.minutes} />
@@ -75,7 +68,7 @@ export default function EventPage() {
     () => ({
       organizer: "piyush-chanchal",
       title: "Piyush & Chanchal — Wedding Celebration",
-      dateISO: "2025-12-07T18:00:00+05:30",
+      dateISO: "2025-11-03T18:00:00+05:30",
       location: {
         name: "Enamaskar Banquet",
         addressLine: "MG Road, Jaipur, Rajasthan",
@@ -115,30 +108,16 @@ export default function EventPage() {
         <div className="absolute inset-0 bg-black/40"></div>
       </div>
 
-      {/* Content */}
-      <div className="relative z-10 mx-auto w-full max-w-6xl px-4 py-8 md:py-12">
-        {/* Hero Section */}
-        <div className="text-center mb-12">
-          <h1 className="text-4xl md:text-6xl font-bold text-white mb-4 drop-shadow-2xl">
-            {event.title}
-          </h1>
-          <p className="text-xl md:text-2xl text-white/90 mb-6 drop-shadow-lg">
-            {event.location.name}
-          </p>
-          <p className="text-lg text-white/80 drop-shadow-md">
-            {event.location.addressLine}
-          </p>
-        </div>
-
-        {/* Beautiful Countdown Section */}
-        <div className="mb-16">
+      {/* Fixed Countdown at Bottom */}
+      <div className="fixed bottom-0 left-0 right-0 z-20 p-4 md:p-6">
+        <div className="mx-auto max-w-4xl">
           <Card className="bg-white/10 backdrop-blur-md border-white/20 shadow-2xl">
-            <CardContent className="p-8 md:p-12">
-              <div className="text-center mb-8">
-                <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 drop-shadow-lg">
+            <CardContent className="p-4 md:p-6">
+              <div className="text-center mb-4">
+                <h2 className="text-xl md:text-2xl font-bold text-white mb-2 drop-shadow-lg">
                   Countdown to Our Special Day
                 </h2>
-                <p className="text-white/80 text-lg drop-shadow-md">
+                <p className="text-white/80 text-sm md:text-base drop-shadow-md">
                   The celebration begins in...
                 </p>
               </div>
