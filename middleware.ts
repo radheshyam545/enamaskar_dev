@@ -14,13 +14,14 @@ export function middleware(req: NextRequest) {
       url.pathname = `/${sub}`; // redirect to dynamic route
       return NextResponse.rewrite(url);
     }
-  } else {
+  } 
+  else {
     // Production (enamaskar.com)
-    if (host !== "enamaskar.com" && host !== "www.enamaskar.com") {
-      const sub = host.split(".")[0]; // subdomain
-      url.pathname = `/${sub}`; // send request to eventSlug route
-      return NextResponse.rewrite(url);
-    }
+    // if (host !== "enamaskar.com" && host !== "www.enamaskar.com") {
+    //   const sub = host.split(".")[0]; // subdomain
+    //   url.pathname = `/${sub}`; // send request to eventSlug route
+    //   return NextResponse.rewrite(url);
+    // }
   }
 
   return NextResponse.next();
