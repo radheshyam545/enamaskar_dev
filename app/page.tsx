@@ -19,13 +19,13 @@ function getRemaining(target: Date) {
 // Beautiful Time Card Component
 function TimeCard({ label, value }: { label: string; value: number | string }) {
   return (
-    <div className="relative overflow-hidden rounded-xl bg-gradient-to-br from-white/90 to-white/70 backdrop-blur-sm border border-white/20 shadow-xl">
+    <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-white/90 to-white/70 backdrop-blur-sm border border-white/20 shadow-2xl">
       <div className="absolute inset-0 bg-gradient-to-br from-pink-500/10 to-purple-500/10"></div>
-      <div className="relative px-3 py-4 md:px-4 md:py-5 text-center">
-        <div className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-pink-600 to-purple-600 bg-clip-text text-transparent mb-1">
+      <div className="relative px-6 py-8 text-center">
+        <div className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-pink-600 to-purple-600 bg-clip-text text-transparent mb-2">
           {value}
         </div>
-        <div className="text-xs md:text-sm font-medium text-slate-700 uppercase tracking-wider">{label}</div>
+        <div className="text-sm font-medium text-slate-700 uppercase tracking-wider">{label}</div>
       </div>
     </div>
   )
@@ -43,7 +43,7 @@ function BeautifulCountdown({ dateISO }: { dateISO: string }) {
 
   if (t.finished) {
     return (
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-3">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
         <TimeCard label="Status" value="🎉" />
         <TimeCard label="Best" value="💕" />
         <TimeCard label="Wishes" value="✨" />
@@ -53,7 +53,7 @@ function BeautifulCountdown({ dateISO }: { dateISO: string }) {
   }
 
   return (
-    <div className="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-3">
+    <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
       <TimeCard label="Days" value={t.days} />
       <TimeCard label="Hours" value={t.hours} />
       <TimeCard label="Minutes" value={t.minutes} />
@@ -69,11 +69,7 @@ export default function EventPage() {
       organizer: "piyush-chanchal",
       title: "Piyush & Chanchal — Wedding Celebration",
       dateISO: "2025-11-03T18:00:00+05:30",
-      location: {
-        name: "Enamaskar Banquet",
-        addressLine: "MG Road, Jaipur, Rajasthan",
-        mapUrl: "https://www.google.com/maps/search/?api=1&query=Enamaskar%20Banquet%20MG%20Road%20Jaipur",
-      },
+      
       description:
         "Join us for an evening of love, laughter, and celebration. Please RSVP to help us plan seating and catering.",
       bannerImage: "/wedding-banner-with-floral-motif.jpg",
@@ -92,32 +88,85 @@ export default function EventPage() {
   )
 
   return (
-    <main className="relative font-sans text-slate-900 min-h-screen overflow-hidden">
-      {/* Background Video */}
-      <div className="fixed inset-0 z-0">
-        <video
-          autoPlay
-          muted
-          loop
-          playsInline
-          className="w-full h-full object-cover"
-        >
-          <source src={event.videoUrl} type="video/mp4" />
-        </video>
-        {/* Dark overlay for better text readability */}
-        <div className="absolute inset-0 bg-black/40"></div>
+    <main className="relative font-sans text-slate-900">
+      {/* Background Video Section */}
+      <div className="relative h-screen w-full bg-gradient-to-br from-pink-50 to-purple-50">
+        {/* Desktop Layout with Flowers */}
+        <div className="hidden md:flex h-full items-center justify-center">
+          {/* Left Side Flowers */}
+          <div className="absolute left-0 top-0 w-1/4 h-full flex items-center justify-center">
+            <div className="text-8xl opacity-20 transform rotate-12">🌸</div>
+            <div className="absolute top-1/4 left-1/4 text-6xl opacity-15 transform -rotate-12">🌺</div>
+            <div className="absolute bottom-1/4 left-1/3 text-7xl opacity-25 transform rotate-45">🌻</div>
+            <div className="absolute top-3/4 left-1/2 text-5xl opacity-20 transform -rotate-30">🌷</div>
+          </div>
+
+          {/* Center Video - Reel Format */}
+          <div className="relative w-[347px] h-[629px] bg-black rounded-3xl overflow-hidden shadow-2xl">
+            <video
+              autoPlay
+              muted
+              loop
+              playsInline
+              className="w-full h-full object-cover"
+            >
+              <source src={event.videoUrl} type="video/mp4" />
+            </video>
+            {/* Video Overlay */}
+            {/* <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div> */}
+            {/* <div className="absolute bottom-6 left-6 right-6 text-center">
+              <h1 className="text-2xl font-bold text-black mb-2 drop-shadow-lg">
+                {event.title}
+              </h1>
+              <p className="text-black/90 text-sm drop-shadow-md">
+                November 3-4, 2024
+              </p>
+            </div> */}
+          </div>
+
+          {/* Right Side Flowers */}
+          <div className="absolute right-0 top-0 w-1/4 h-full flex items-center justify-center">
+            <div className="text-8xl opacity-20 transform -rotate-12">🌹</div>
+            <div className="absolute top-1/4 right-1/4 text-6xl opacity-15 transform rotate-12">🌼</div>
+            <div className="absolute bottom-1/4 right-1/3 text-7xl opacity-25 transform -rotate-45">🌺</div>
+            <div className="absolute top-3/4 right-1/2 text-5xl opacity-20 transform rotate-30">🌸</div>
+          </div>
+        </div>
+
+        {/* Mobile Layout - Full Screen */}
+        <div className="md:hidden h-full">
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            className="w-full h-full object-cover"
+          >
+            <source src={event.videoUrl} type="video/mp4" />
+          </video>
+          {/* Mobile Overlay */}
+          {/* <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div> */}
+          {/* <div className="absolute bottom-8 left-4 right-4 text-center">
+            <h1 className="text-3xl font-bold text-black mb-2 drop-shadow-lg">
+              {event.title}
+            </h1>
+            <p className="text-white/90 text-lg drop-shadow-md">
+              November 3-4, 2025
+            </p>
+          </div> */}
+        </div>
       </div>
 
-      {/* Fixed Countdown at Bottom */}
-      <div className="fixed bottom-0 left-0 right-0 z-20 p-4 md:p-6">
-        <div className="mx-auto max-w-4xl">
+      {/* Countdown Section - Below Video */}
+      <div className="relative z-10 bg-gradient-to-b from-slate-900 to-slate-800 py-16">
+        <div className="mx-auto max-w-4xl px-4">
           <Card className="bg-white/10 backdrop-blur-md border-white/20 shadow-2xl">
-            <CardContent className="p-4 md:p-6">
-              <div className="text-center mb-4">
-                <h2 className="text-xl md:text-2xl font-bold text-white mb-2 drop-shadow-lg">
-                  Countdown to Our Special Day
+            <CardContent className="p-8 md:p-12">
+              <div className="text-center mb-8">
+                <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 drop-shadow-lg">
+                  Countdown to  Special Day
                 </h2>
-                <p className="text-white/80 text-sm md:text-base drop-shadow-md">
+                <p className="text-white/80 text-lg drop-shadow-md">
                   The celebration begins in...
                 </p>
               </div>
