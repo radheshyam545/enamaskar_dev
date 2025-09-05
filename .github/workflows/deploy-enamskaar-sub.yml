@@ -1,0 +1,30 @@
+name: Deploy Enamskaar Sub App
+
+on:
+  push:
+    branches:
+      - main   
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Setup SSH
+        uses: webfactory/ssh-agent@v0.8.0
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+      - name: Deploy to Enamskaar Sub Server
+        run: |
+          ssh -o StrictHostKeyChecking=no ${{ secrets.USERNAME }}@${{ secrets.HOST }} << 'EOF'
+            cd /var/www/html/Enamskaar_Sub
+            git fetch --all
+            git reset --hard origin/main
+            npm install --legacy-peer-deps
+            npm run build
+            pm2 restart enamskaar-sub --update-env
+          EOF
