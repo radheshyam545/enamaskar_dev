@@ -1,6 +1,6 @@
 "use client"
 
-import { useMemo, useEffect, useState } from "react"
+import { useMemo, useEffect, useState ,useRef } from "react"
 import { Card, CardContent } from "@/components/ui/card"
 
 // Countdown logic
@@ -64,6 +64,22 @@ function BeautifulCountdown({ dateISO }: { dateISO: string }) {
 
 export default function EventPage() {
   // Update these with your actual details (date, location, media, etc.)
+   const [selectedVideo,setSelectedVideo]=useState("wedding_1")
+
+    const videoRef = useRef<HTMLDivElement>(null);
+
+    const handleVideoClick = (video: string) => {
+    setSelectedVideo(video);
+
+    // Smooth scroll to the video section
+    if (videoRef.current) {
+      videoRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
+
+ 
+
   const event = useMemo(
     () => ({
       organizer: "piyush-chanchal",
@@ -73,7 +89,7 @@ export default function EventPage() {
       description:
         "Join us for an evening of love, laughter, and celebration. Please RSVP to help us plan seating and catering.",
       bannerImage: "/wedding-banner-with-floral-motif.jpg",
-      videoUrl: "/videos/wedding_1.mp4",
+      videoUrl: `/videos/${selectedVideo}.mp4`,
       isGuestListPublic: true,
       galleryImages: [
         "/engagement-photo-1.jpg",
@@ -84,11 +100,45 @@ export default function EventPage() {
         "/friends-6.jpg",
       ],
     }),
-    [],
+    [selectedVideo],
   )
 
   return (
     <main className="relative font-sans text-slate-900">
+      <header className=" top-0 left-0 w-full z-50 bg-gradient-to-br from-pink-100 to-purple-100 backdrop-blur-lg shadow-md border-b border-white/30">
+        <div className="max-w-7xl mx-auto px-4 py-3 flex flex-col sm:flex-row items-center justify-between gap-3">
+          
+          {/* Wedding Title */}
+          <h1 className="flex items-center justify-center sm:justify-start space-x-2 text-center sm:text-left w-full sm:w-auto">
+            {/* <span className="text-2xl sm:text-3xl md:text-4xl drop-shadow-lg">💍</span> */}
+            <span className="text-2xl sm:text-3xl md:text-4xl inline-block animate-3d-ring">💍</span>
+
+            <span className="text-xl sm:text-xl md:text-2xl lg:text-3xl font-extrabold tracking-wide text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-purple-400 to-blue-500">
+              Piyush & Chanchal
+            </span>
+          </h1>
+
+          {/* Video Buttons */}
+          <div className="flex flex-row items-center gap-2 w-full sm:w-auto justify-center sm:justify-end">
+            <button
+              onClick={() => handleVideoClick("wedding_1")}
+              className="px-3 py-2 rounded-full bg-pink-100/70 hover:bg-pink-200 text-pink-700 font-semibold backdrop-blur-md shadow-md transition-all duration-300 hover:scale-105 flex items-center justify-center space-x-1 text-xs sm:text-sm whitespace-nowrap flex-1 sm:flex-initial"
+            >
+              <span>🎉</span>
+              <span className="hidden sm:inline">Wedding Invitation</span>
+              <span className="inline sm:hidden">Wedding</span>
+            </button>
+            <button
+              onClick={() => handleVideoClick("janaue")}
+              className="px-3 py-2 rounded-full bg-purple-100/70 hover:bg-purple-200 text-purple-700 font-semibold backdrop-blur-md shadow-md transition-all duration-300 hover:scale-105 flex items-center justify-center space-x-1 text-xs sm:text-sm whitespace-nowrap flex-1 sm:flex-initial"
+            >
+              <span>🌸</span>
+              <span className="hidden sm:inline">Janaue Ceremony</span>
+              <span className="inline sm:hidden">Janaue</span>
+            </button>
+          </div>
+        </div>
+      </header>
       {/* Background Video Section */}
       <div className="relative h-screen w-full bg-gradient-to-br from-pink-50 to-purple-50">
         {/* Desktop Layout with Flowers */}
@@ -102,8 +152,9 @@ export default function EventPage() {
           </div>
 
           {/* Center Video - Reel Format */}
-          <div className="relative w-[347px] h-[629px] bg-black rounded-3xl overflow-hidden shadow-2xl">
+          <div ref={videoRef}  className="relative w-[347px] h-[629px] bg-black rounded-3xl overflow-hidden shadow-2xl">
             <video
+             key={selectedVideo}
               autoPlay
               muted
               loop
@@ -134,8 +185,9 @@ export default function EventPage() {
         </div>
 
         {/* Mobile Layout - Full Screen */}
-        <div className="md:hidden h-full">
+        <div ref={videoRef}  className="md:hidden h-full">
           <video
+            key={selectedVideo}
             autoPlay
             muted
             loop
