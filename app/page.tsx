@@ -133,8 +133,8 @@ export default function EventPage() {
               className="px-3 py-2 rounded-full bg-purple-100/70 hover:bg-purple-200 text-purple-700 font-semibold backdrop-blur-md shadow-md transition-all duration-300 hover:scale-105 flex items-center justify-center space-x-1 text-xs sm:text-sm whitespace-nowrap flex-1 sm:flex-initial"
             >
               <span>🌸</span>
-              <span className="hidden sm:inline">Janaue Ceremony</span>
-              <span className="inline sm:hidden">Janaue</span>
+              <span className="hidden sm:inline">जनेऊ समारोह</span>
+              <span className="inline sm:hidden">जनेऊ</span>
             </button>
           </div>
         </div>
@@ -216,7 +216,7 @@ export default function EventPage() {
             <CardContent className="p-8 md:p-12">
               <div className="text-center mb-8">
                 <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 drop-shadow-lg">
-                  Countdown to  Special Day
+                  Countdown to Our Wedding Day
                 </h2>
                 <p className="text-white/80 text-lg drop-shadow-md">
                   The celebration begins in...
