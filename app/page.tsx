@@ -64,7 +64,9 @@ function BeautifulCountdown({ dateISO }: { dateISO: string }) {
 
 export default function EventPage() {
   // Update these with your actual details (date, location, media, etc.)
-   const [selectedVideo,setSelectedVideo]=useState("wedding_1")
+   const [selectedVideo,setSelectedVideo]=useState("v1759901545/wedding_1_lzhr4t.mp4")
+
+  console.log(selectedVideo , "[[[[[[[[[")
 
     const videoRef = useRef<HTMLDivElement>(null);
 
@@ -89,7 +91,9 @@ export default function EventPage() {
       description:
         "Join us for an evening of love, laughter, and celebration. Please RSVP to help us plan seating and catering.",
       bannerImage: "/wedding-banner-with-floral-motif.jpg",
-      videoUrl: `/videos/${selectedVideo}.mp4`,
+      videoUrl: `https://res.cloudinary.com/da3rezykp/video/upload/${selectedVideo}`,
+      // videoUrl: `https://res.cloudinary.com/da3rezykp/video/upload/v1759900083/Invitation_lh0olv.mp4`,
+      // videoUrl:"https://res.cloudinary.com/da3rezykp/video/upload/v1759901545/wedding_1_lzhr4t.mp4",
       isGuestListPublic: true,
       galleryImages: [
         "/engagement-photo-1.jpg",
@@ -121,7 +125,7 @@ export default function EventPage() {
           {/* Video Buttons */}
           <div className="flex flex-row items-center gap-2 w-full sm:w-auto justify-center sm:justify-end">
             <button
-              onClick={() => handleVideoClick("wedding_1")}
+              onClick={() => handleVideoClick("v1759901545/wedding_1_lzhr4t.mp4")}
               className="px-3 py-2 rounded-full bg-pink-100/70 hover:bg-pink-200 text-pink-700 font-semibold backdrop-blur-md shadow-md transition-all duration-300 hover:scale-105 flex items-center justify-center space-x-1 text-xs sm:text-sm whitespace-nowrap flex-1 sm:flex-initial"
             >
               <span>🎉</span>
@@ -129,7 +133,7 @@ export default function EventPage() {
               <span className="inline sm:hidden">Wedding</span>
             </button>
             <button
-              onClick={() => handleVideoClick("janaue")}
+              onClick={() => handleVideoClick("v1759900083/Invitation_lh0olv.mp4")}
               className="px-3 py-2 rounded-full bg-purple-100/70 hover:bg-purple-200 text-purple-700 font-semibold backdrop-blur-md shadow-md transition-all duration-300 hover:scale-105 flex items-center justify-center space-x-1 text-xs sm:text-sm whitespace-nowrap flex-1 sm:flex-initial"
             >
               <span>🌸</span>
@@ -187,7 +191,7 @@ export default function EventPage() {
         {/* Mobile Layout - Full Screen */}
         <div ref={videoRef}  className="md:hidden h-full">
           <video
-            key={selectedVideo}
+           key={selectedVideo}
             autoPlay
             muted
             loop
