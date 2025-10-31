@@ -132,8 +132,8 @@ export default function EventPage() {
               className="px-3 py-2 rounded-full bg-red-100 hover:bg-blue-200 text-yellow-700 font-semibold backdrop-blur-md shadow-md transition-all duration-300 hover:scale-105 flex items-center justify-center space-x-1 text-xs sm:text-sm whitespace-nowrap flex-1 sm:flex-initial"
             >
               <span>🎨</span>
-              <span className="hidden sm:inline">Templates</span>
-              <span className="inline sm:hidden">Templates</span>
+              <span className="hidden sm:inline">Events</span>
+              <span className="inline sm:hidden">Events</span>
             </Link>
             <button
               onClick={() => handleVideoClick("v1761896207/Piyush_Chanchal_-_4th_Nov_bxwdff.mp4")}
