@@ -143,14 +143,14 @@ export default function EventPage() {
               <span className="hidden sm:inline">Wedding Invitation</span>
               <span className="inline sm:hidden">Wedding</span>
             </button>
-            <button
+            {/* <button
               onClick={() => handleVideoClick("v1759900083/Invitation_lh0olv.mp4")}
               className="px-3 py-2 rounded-full bg-purple-100/70 hover:bg-purple-200 text-purple-700 font-semibold backdrop-blur-md shadow-md transition-all duration-300 hover:scale-105 flex items-center justify-center space-x-1 text-xs sm:text-sm whitespace-nowrap flex-1 sm:flex-initial"
             >
               <span>🌸</span>
               <span className="hidden sm:inline">जनेऊ समारोह</span>
               <span className="inline sm:hidden">जनेऊ</span>
-            </button>
+            </button> */}
           </div>
         </div>
       </header>
@@ -207,7 +207,7 @@ export default function EventPage() {
             muted
             loop
             playsInline
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover p-4"
           >
             <source src={event.videoUrl} type="video/mp4" />
           </video>
