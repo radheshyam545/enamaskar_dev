@@ -207,7 +207,7 @@ export default function EventPage() {
             muted
             loop
             playsInline
-            className="w-full h-full object-cover p-4"
+            className="w-full h-full object-contain"
           >
             <source src={event.videoUrl} type="video/mp4" />
           </video>
