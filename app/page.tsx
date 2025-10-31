@@ -2,6 +2,7 @@
 
 import { useMemo, useEffect, useState ,useRef } from "react"
 import { Card, CardContent } from "@/components/ui/card"
+import Link from "next/link"
 
 // Countdown logic
 function getRemaining(target: Date) {
@@ -64,7 +65,7 @@ function BeautifulCountdown({ dateISO }: { dateISO: string }) {
 
 export default function EventPage() {
   // Update these with your actual details (date, location, media, etc.)
-   const [selectedVideo,setSelectedVideo]=useState("v1759901545/wedding_1_lzhr4t.mp4")
+   const [selectedVideo,setSelectedVideo]=useState("v1761896207/Piyush_Chanchal_-_4th_Nov_bxwdff.mp4")
 
   console.log(selectedVideo , "[[[[[[[[[")
 
@@ -94,6 +95,7 @@ export default function EventPage() {
       videoUrl: `https://res.cloudinary.com/da3rezykp/video/upload/${selectedVideo}`,
       // videoUrl: `https://res.cloudinary.com/da3rezykp/video/upload/v1759900083/Invitation_lh0olv.mp4`,
       // videoUrl:"https://res.cloudinary.com/da3rezykp/video/upload/v1759901545/wedding_1_lzhr4t.mp4",
+      // https://res.cloudinary.com/da3rezykp/video/upload/v1761896207/Piyush_Chanchal_-_4th_Nov_bxwdff.mp4
       isGuestListPublic: true,
       galleryImages: [
         "/engagement-photo-1.jpg",
@@ -124,8 +126,17 @@ export default function EventPage() {
 
           {/* Video Buttons */}
           <div className="flex flex-row items-center gap-2 w-full sm:w-auto justify-center sm:justify-end">
+            <Link
+              href="/temp"
+              onClick={() => handleVideoClick("v1761896207/Piyush_Chanchal_-_4th_Nov_bxwdff.mp4")}
+              className="px-3 py-2 rounded-full bg-red-100 hover:bg-blue-200 text-yellow-700 font-semibold backdrop-blur-md shadow-md transition-all duration-300 hover:scale-105 flex items-center justify-center space-x-1 text-xs sm:text-sm whitespace-nowrap flex-1 sm:flex-initial"
+            >
+              <span>🎨</span>
+              <span className="hidden sm:inline">Templates</span>
+              <span className="inline sm:hidden">Templates</span>
+            </Link>
             <button
-              onClick={() => handleVideoClick("v1759901545/wedding_1_lzhr4t.mp4")}
+              onClick={() => handleVideoClick("v1761896207/Piyush_Chanchal_-_4th_Nov_bxwdff.mp4")}
               className="px-3 py-2 rounded-full bg-pink-100/70 hover:bg-pink-200 text-pink-700 font-semibold backdrop-blur-md shadow-md transition-all duration-300 hover:scale-105 flex items-center justify-center space-x-1 text-xs sm:text-sm whitespace-nowrap flex-1 sm:flex-initial"
             >
               <span>🎉</span>
@@ -212,6 +223,10 @@ export default function EventPage() {
           </div> */}
         </div>
       </div>
+
+
+
+
 
       {/* Countdown Section - Below Video */}
       <div className="relative z-10 bg-gradient-to-b from-slate-900 to-slate-800 py-16">
