@@ -3,6 +3,7 @@
 import { useMemo, useEffect, useState ,useRef } from "react"
 import { Card, CardContent } from "@/components/ui/card"
 import Link from "next/link"
+import { Volume2, VolumeX } from "lucide-react"; 
 
 // Countdown logic
 function getRemaining(target: Date) {
@@ -66,10 +67,20 @@ function BeautifulCountdown({ dateISO }: { dateISO: string }) {
 export default function EventPage() {
   // Update these with your actual details (date, location, media, etc.)
    const [selectedVideo,setSelectedVideo]=useState("v1761909855/VID-20251031-WA0012_ntkjkf.mp4")
+   const [isMuted, setIsMuted] = useState(true);
 
-  console.log(selectedVideo , "[[[[[[[[[")
-
-    const videoRef = useRef<HTMLDivElement>(null);
+   
+   console.log(selectedVideo , "[[[[[[[[[")
+   
+   const videoRef = useRef<HTMLVideoElement>(null);
+   
+   const handleToggleMute = () => {
+    const video = videoRef.current;
+    if (video) {
+      video.muted = !isMuted;
+      setIsMuted(!isMuted);
+    }
+  };
 
     const handleVideoClick = (video: string) => {
     setSelectedVideo(video);
@@ -167,8 +178,8 @@ export default function EventPage() {
           </div>
 
           {/* Center Video - Reel Format */}
-          <div ref={videoRef}  className="relative w-[347px] h-[629px] bg-black rounded-3xl overflow-hidden shadow-2xl">
-            <video
+          <div className="relative w-[347px] h-[629px] bg-black rounded-3xl overflow-hidden shadow-2xl">
+            {/* <video
              key={selectedVideo}
               autoPlay
               loop
@@ -176,7 +187,31 @@ export default function EventPage() {
               className="w-full h-full object-cover"
             >
               <source src={event.videoUrl} type="video/mp4" />
-            </video>
+            </video> */}
+
+            <video
+        ref={videoRef}
+        key={selectedVideo}
+        autoPlay
+        loop
+        muted={isMuted}
+        playsInline
+        className="w-full h-full object-cover"
+      >
+        <source src={event.videoUrl} type="video/mp4" />
+      </video>
+
+      {/* 🔊 Volume toggle button */}
+      <button
+        onClick={handleToggleMute}
+        className="absolute top-5 right-5 bg-white/60 hover:bg-white/80 text-gray-800 p-2 rounded-full shadow-md transition-all duration-300"
+      >
+        {isMuted ? (
+          <VolumeX className="w-5 h-5" />
+        ) : (
+          <Volume2 className="w-5 h-5" />
+        )}
+      </button>
             {/* Video Overlay */}
             {/* <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div> */}
             {/* <div className="absolute bottom-6 left-6 right-6 text-center">
@@ -199,27 +234,36 @@ export default function EventPage() {
         </div>
 
         {/* Mobile Layout - Full Screen */}
-        <div ref={videoRef}  className="md:hidden h-full">
-          <video
-           key={selectedVideo}
-            autoPlay
-            loop
-            playsInline
-            className="w-full h-full object-contain"
-          >
-            <source src={event.videoUrl} type="video/mp4" />
-          </video>
-          {/* Mobile Overlay */}
-          {/* <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div> */}
-          {/* <div className="absolute bottom-8 left-4 right-4 text-center">
-            <h1 className="text-3xl font-bold text-black mb-2 drop-shadow-lg">
-              {event.title}
-            </h1>
-            <p className="text-white/90 text-lg drop-shadow-md">
-              November 3-4, 2025
-            </p>
-          </div> */}
-        </div>
+<div className="relative md:hidden w-full">
+  {/* 📹 Video container */}
+  <div className="relative w-full aspect-[9/16] bg-black overflow-hidden rounded-3xl shadow-2xl">
+    <video
+      ref={videoRef}
+      key={selectedVideo}
+      autoPlay
+      loop
+      muted={isMuted}
+      playsInline
+      className="w-full h-full object-cover"
+    >
+      <source src={event.videoUrl} type="video/mp4" />
+    </video>
+
+    {/* 🔊 Volume toggle button — correctly positioned INSIDE video */}
+    <button
+      onClick={handleToggleMute}
+      className="absolute top-3 right-3 bg-white/70 hover:bg-white/90 text-gray-800 p-2 rounded-full shadow-md backdrop-blur-sm transition-all duration-300 z-10"
+    >
+      {isMuted ? (
+        <VolumeX className="w-5 h-5" />
+      ) : (
+        <Volume2 className="w-5 h-5" />
+      )}
+    </button>
+  </div>
+</div>
+
+
       </div>
 
 
