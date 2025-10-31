@@ -65,7 +65,7 @@ function BeautifulCountdown({ dateISO }: { dateISO: string }) {
 
 export default function EventPage() {
   // Update these with your actual details (date, location, media, etc.)
-   const [selectedVideo,setSelectedVideo]=useState("v1761896207/Piyush_Chanchal_-_4th_Nov_bxwdff.mp4")
+   const [selectedVideo,setSelectedVideo]=useState("v1761909855/VID-20251031-WA0012_ntkjkf.mp4")
 
   console.log(selectedVideo , "[[[[[[[[[")
 
@@ -136,7 +136,7 @@ export default function EventPage() {
               <span className="inline sm:hidden">Events</span>
             </Link>
             <button
-              onClick={() => handleVideoClick("v1761896207/Piyush_Chanchal_-_4th_Nov_bxwdff.mp4")}
+              onClick={() => handleVideoClick("v1761909855/VID-20251031-WA0012_ntkjkf.mp4")}
               className="px-3 py-2 rounded-full bg-pink-100/70 hover:bg-pink-200 text-pink-700 font-semibold backdrop-blur-md shadow-md transition-all duration-300 hover:scale-105 flex items-center justify-center space-x-1 text-xs sm:text-sm whitespace-nowrap flex-1 sm:flex-initial"
             >
               <span>🎉</span>
@@ -171,7 +171,6 @@ export default function EventPage() {
             <video
              key={selectedVideo}
               autoPlay
-              muted
               loop
               playsInline
               className="w-full h-full object-cover"
@@ -204,7 +203,6 @@ export default function EventPage() {
           <video
            key={selectedVideo}
             autoPlay
-            muted
             loop
             playsInline
             className="w-full h-full object-contain"
