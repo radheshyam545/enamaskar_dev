@@ -115,36 +115,36 @@ const WeddingEventPage: React.FC = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-pink-50 via-white to-purple-50 flex flex-col">
   {/* Header */}
-  <header className="text-center py-10 px-4">
-    <div className="max-w-4xl mx-auto">
-      <div className="flex items-center justify-center gap-3 mb-3">
-        <Heart className="w-7 h-7 text-rose-400 fill-rose-400" />
-        <h1 className="text-4xl md:text-6xl font-serif text-gray-800">
+  <header className="text-center py-8 md:py-10 px-4">
+    <div className="max-w-3xl mx-auto">
+      <div className="flex items-center justify-center gap-3 mb-2 md:mb-3">
+        <Heart className="w-6 h-6 md:w-7 md:h-7 text-rose-400 fill-rose-400" />
+        <h1 className="text-3xl md:text-5xl font-serif text-gray-800">
           Piyush & Chanchal
         </h1>
-        <Heart className="w-7 h-7 text-rose-400 fill-rose-400" />
+        <Heart className="w-6 h-6 md:w-7 md:h-7 text-rose-400 fill-rose-400" />
       </div>
-      <p className="text-base md:text-xl text-gray-600 font-light">
+      <p className="text-sm md:text-lg text-gray-600 font-light">
         Together with their families, invite you to celebrate their union
       </p>
     </div>
 
     {/* Decorative divider */}
-    <div className="flex items-center justify-center gap-4 mt-5">
-      <div className="h-px w-20 md:w-24 bg-gradient-to-r from-transparent to-rose-300"></div>
-      <div className="text-xl md:text-2xl text-rose-300">❁</div>
-      <div className="h-px w-20 md:w-24 bg-gradient-to-l from-transparent to-rose-300"></div>
+    <div className="flex items-center justify-center gap-4 mt-4">
+      <div className="h-px w-16 md:w-24 bg-gradient-to-r from-transparent to-rose-300"></div>
+      <div className="text-lg md:text-2xl text-rose-300">❁</div>
+      <div className="h-px w-16 md:w-24 bg-gradient-to-l from-transparent to-rose-300"></div>
     </div>
   </header>
 
   {/* Section Selector */}
-  <div className="max-w-6xl mx-auto px-3 mb-6 md:mb-10">
-    <div className="bg-white rounded-2xl shadow-lg p-2 flex flex-wrap gap-2 justify-center">
+  <div className="max-w-5xl mx-auto px-3 mb-6 md:mb-10">
+    <div className="bg-white rounded-2xl shadow-md p-2 flex flex-wrap gap-2 justify-center">
       {sections.map((section, index) => (
         <button
           key={section.title}
           onClick={() => handleSectionChange(index)}
-          className={`px-4 py-2 md:px-6 md:py-3 rounded-xl font-medium transition-all duration-300 ${
+          className={`px-3 py-2 md:px-5 md:py-2.5 rounded-lg text-sm md:text-base font-medium transition-all duration-300 ${
             selectedSection === index
               ? "bg-gradient-to-r from-rose-400 to-pink-500 text-white shadow-md transform scale-105"
               : "text-gray-600 hover:bg-gray-50"
@@ -159,19 +159,19 @@ const WeddingEventPage: React.FC = () => {
   {/* Main Display Area */}
   <div className="flex-grow flex items-center justify-center px-3 mb-8 md:mb-12">
     <div
-      className={`bg-gradient-to-br ${currentSection.color} rounded-3xl shadow-2xl overflow-hidden transition-all duration-500 w-full max-w-6xl`}
+      className={`bg-gradient-to-br ${currentSection.color} rounded-3xl shadow-xl overflow-hidden transition-all duration-500 w-full max-w-5xl`}
     >
       <div className="grid md:grid-cols-2 gap-0">
         {/* Media Section */}
-        <div className="relative h-[60vh] md:h-auto overflow-hidden">
+        <div className="relative h-[60vh] md:h-[360px] lg:h-[400px] overflow-hidden">
           <div
-            className={`w-full h-full transition-opacity duration-300 ${
+            key={currentSection.media} // ✅ ensures re-render on tab change
+            className={`w-full h-full transition-opacity duration-500 ${
               isTransitioning ? "opacity-0" : "opacity-100"
             }`}
           >
             {currentSection.type === "video" ? (
               <video
-                key={currentSection.media}
                 className="w-full h-full object-cover"
                 autoPlay
                 loop
@@ -184,7 +184,7 @@ const WeddingEventPage: React.FC = () => {
               <img
                 src={currentSection.media}
                 alt={currentSection.title}
-                className="w-full h-full object-cover"
+                className="w-full h-full object-contain"
               />
             )}
           </div>
@@ -192,23 +192,23 @@ const WeddingEventPage: React.FC = () => {
 
         {/* Content Section */}
         <div
-          className={`p-6 md:p-12 flex flex-col justify-center transition-all duration-300 ${
+          className={`p-5 md:p-8 flex flex-col justify-center transition-all duration-500 ${
             isTransitioning
               ? "opacity-0 translate-x-4"
               : "opacity-100 translate-x-0"
           }`}
         >
-          <h2 className="text-3xl md:text-5xl font-serif text-gray-800 mb-4 md:mb-6">
+          <h2 className="text-2xl md:text-4xl font-serif text-gray-800 mb-3 md:mb-5">
             {currentSection.title}
           </h2>
-          <p className="text-gray-700 text-base md:text-lg leading-relaxed mb-6 md:mb-8">
+          <p className="text-gray-700 text-sm md:text-base leading-relaxed mb-5 md:mb-6">
             {currentSection.description}
           </p>
 
-          <div className="space-y-4 text-sm md:text-base">
+          <div className="space-y-3 text-sm md:text-base">
             {currentSection.date && currentSection.time && (
-              <div className="flex items-center gap-3 text-gray-700">
-                <Calendar className="w-5 h-5 text-rose-400" />
+              <div className="flex items-center gap-2 text-gray-700">
+                <Calendar className="w-4 h-4 md:w-5 md:h-5 text-rose-400" />
                 <div>
                   <p className="font-semibold">{currentSection.date}</p>
                   <p className="text-gray-600">{currentSection.time}</p>
@@ -216,17 +216,17 @@ const WeddingEventPage: React.FC = () => {
               </div>
             )}
             {currentSection.venue && (
-              <div className="flex items-center gap-3 text-gray-700">
-                <MapPin className="w-5 h-5 text-rose-400" />
+              <div className="flex items-center gap-2 text-gray-700">
+                <MapPin className="w-4 h-4 md:w-5 md:h-5 text-rose-400" />
                 <p className="font-semibold">{currentSection.venue}</p>
               </div>
             )}
           </div>
 
           {/* Decorative line */}
-          <div className="mt-6 md:mt-8 flex items-center gap-2">
-            <div className="h-1 w-10 md:w-12 bg-gradient-to-r from-rose-400 to-pink-500 rounded-full"></div>
-            <div className="text-rose-400 text-sm">✦</div>
+          <div className="mt-5 flex items-center gap-2">
+            <div className="h-1 w-8 md:w-10 bg-gradient-to-r from-rose-400 to-pink-500 rounded-full"></div>
+            <div className="text-rose-400 text-xs md:text-sm">✦</div>
           </div>
         </div>
       </div>
@@ -234,16 +234,15 @@ const WeddingEventPage: React.FC = () => {
   </div>
 
   {/* Footer */}
-  <footer className="text-center py-8 px-4 border-t border-gray-200 mt-auto">
-    <p className="text-gray-600 text-sm md:text-base">
-      With love and gratitude
-    </p>
-    <div className="flex items-center justify-center gap-2 mt-2">
+  <footer className="text-center py-6 px-4 border-t border-gray-200 mt-auto">
+    <p className="text-gray-600 text-sm md:text-base">With love and gratitude</p>
+    <div className="flex items-center justify-center gap-2 mt-1">
       <Heart className="w-4 h-4 text-rose-400 fill-rose-400" />
-      <p className="text-gray-500 text-sm md:text-base">Piyush & Chanchal</p>
+      <p className="text-gray-500 text-xs md:text-sm">Piyush & Chanchal</p>
     </div>
   </footer>
 </div>
+
 
   );
 };
