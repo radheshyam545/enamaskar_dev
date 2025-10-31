@@ -73,17 +73,17 @@ const WeddingEventPage: React.FC = () => {
     venue: "Main Lawn, Pushkara Resort",
     color: "from-red-50 to-rose-50",
   },
-  {
-    title: "Wish & Compliments",
-    description:
-      "Share your love, blessings, and heartfelt wishes with the couple. Let your words add to the joy of their celebration and create cherished memories for a lifetime.",
-    media:"complements.jpg",
-    type: "image",
-    date: "",
-    time: "",
-    venue: "",
-    color: "from-pink-50 to-red-50",
-  },
+//   {
+//     title: "Wish & Compliments",
+//     description:
+//       "Share your love, blessings, and heartfelt wishes with the couple. Let your words add to the joy of their celebration and create cherished memories for a lifetime.",
+//     media:"complements.jpg",
+//     type: "image",
+//     date: "",
+//     time: "",
+//     venue: "",
+//     color: "from-pink-50 to-red-50",
+//   },
 ];
 
 
